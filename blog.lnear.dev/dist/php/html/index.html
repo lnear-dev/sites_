@@ -1,0 +1,568 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-has-toc data-has-sidebar data-theme="dark" class="astro-3n4akblj"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>lnear/html: A PHP Library for Generating HTML Elements | Docs</title><link rel="canonical" href="https://docs.lnear.dev/php/html/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v4.11.5"/><meta name="generator" content="Starlight v0.25.0"/><meta property="og:title" content="lnear/html: A PHP Library for Generating HTML Elements"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.lnear.dev/php/html/"/><meta property="og:locale" content="en"/><meta property="og:description" content="This library provides a collection of functions for generating HTML elements and their attributes based on the [HTML Living Standard](https://html.spec.whatwg.org/multipage/indices.html)...."/><meta property="og:site_name" content="Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="lnear/html: A PHP Library for Generating HTML Elements"/><meta name="twitter:description" content="This library provides a collection of functions for generating HTML elements and their attributes based on the [HTML Living Standard](https://html.spec.whatwg.org/multipage/indices.html)...."/><meta name="description" content="This library provides a collection of functions for generating HTML elements and their attributes based on the [HTML Living Standard](https://html.spec.whatwg.org/multipage/indices.html)...."/><meta name="twitter:site" content="/lnearwaju"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg> <svg aria-hidden="true" class="dark astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg> <svg aria-hidden="true" class="auto astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> </template><link rel="stylesheet" href="/_astro/index.BCnx3Af5.css"><script type="module" src="/_astro/hoisted.B1ybFnOn.js"></script>
+<script type="module" src="/_astro/page.LS5KDvwX.js"></script></head> <body class="astro-3n4akblj"> <a href="#_top" class="astro-2u4hwv62">Skip to content</a>  <div class="page sl-flex astro-fialk7t5"> <header class="header astro-fialk7t5"><div class="header sl-flex astro-7vepf34r"> <div class="title-wrapper sl-flex astro-7vepf34r"> <a href="/" class="site-title sl-flex astro-4f2d4trk">  <img class="astro-4f2d4trk" alt="" src="/_astro/logo.BCG1Nb5R.svg" width="2000" height="2000">  <span class="astro-4f2d4trk"> Docs </span> </a>  </div> <div class="sl-flex astro-7vepf34r"> <site-search data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}" class="astro-cyk4zbt5"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-cyk4zbt5"> <svg aria-hidden="true" class="astro-cyk4zbt5 astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>  <span class="sl-hidden md:sl-block astro-cyk4zbt5" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-cyk4zbt5" style="display: none;"> <kbd class="astro-cyk4zbt5">Ctrl</kbd><kbd class="astro-cyk4zbt5">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-cyk4zbt5"> <div class="dialog-frame sl-flex astro-cyk4zbt5">  <button data-close-modal class="sl-flex md:sl-hidden astro-cyk4zbt5"> Cancel </button> <div class="search-container astro-cyk4zbt5"> <div id="starlight__search" class="astro-cyk4zbt5"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script>    </div> <div class="sl-hidden md:sl-flex right-group astro-7vepf34r"> <div class="sl-flex social-icons astro-7vepf34r"> <a href="https://github.com/lnear-dev/" rel="me" class="sl-flex astro-duqvkmde"><span class="sr-only astro-duqvkmde">GitHub</span><svg aria-hidden="true" class="astro-duqvkmde astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a><a href="https://twitter.com/lnearwaju" rel="me" class="sl-flex astro-duqvkmde"><span class="sr-only astro-duqvkmde">Twitter</span><svg aria-hidden="true" class="astro-duqvkmde astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M24 4.4a10 10 0 0 1-2.83.78 5.05 5.05 0 0 0 2.17-2.79 9.7 9.7 0 0 1-3.13 1.23 4.89 4.89 0 0 0-5.94-1.03 5 5 0 0 0-2.17 2.38 5.15 5.15 0 0 0-.3 3.25c-1.95-.1-3.86-.63-5.61-1.53a14.04 14.04 0 0 1-4.52-3.74 5.2 5.2 0 0 0-.09 4.91c.39.74.94 1.35 1.61 1.82a4.77 4.77 0 0 1-2.23-.63v.06c0 1.16.4 2.29 1.12 3.18a4.9 4.9 0 0 0 2.84 1.74c-.73.22-1.5.26-2.24.12a4.89 4.89 0 0 0 4.59 3.49A9.78 9.78 0 0 1 0 19.73 13.65 13.65 0 0 0 7.55 22a13.63 13.63 0 0 0 9.96-4.16A14.26 14.26 0 0 0 21.6 7.65V7c.94-.72 1.75-1.6 2.4-2.6Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-67vd7ydq"> <span class="sr-only astro-67vd7ydq">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-67vd7ydq astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-67vd7ydq"> <option value="dark" class="astro-67vd7ydq">Dark</option><option value="light" class="astro-67vd7ydq">Light</option><option value="auto" selected="true" class="astro-67vd7ydq">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-67vd7ydq astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div> </div> </header> <nav class="sidebar astro-fialk7t5" aria-label="Main"> <starlight-menu-button class="astro-qf65ap2j"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-qf65ap2j"> <svg aria-hidden="true" class="astro-qf65ap2j astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg>  </button> </starlight-menu-button>    <div id="starlight__sidebar" class="sidebar-pane astro-fialk7t5"> <div class="sidebar-content sl-flex astro-fialk7t5"> <ul class="top-level astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <details open class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">PHP</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/php/html/" aria-current="page" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">html</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/php/json/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">json</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/php/marco/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">marco</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details open class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">TypeScript/JavaScript</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/typescript/cache/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">cache</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/typescript/ds/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">ds</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/typescript/marco/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">marco</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/typescript/perhaps-ts/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">perhaps-ts</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/typescript/router/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">router</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details open class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">Archive</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">php</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">html</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/php/html/100/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.0</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/html/110/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.1.0</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/html/111/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.1.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/html/112/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.1.2</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/html/dev-main/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">vdev-main</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">json</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/php/json/001/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/json/002/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.2</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/json/dev-main/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">vdev-main</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">marco</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/php/marco/006/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.6</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/marco/007/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.7</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/php/marco/dev-main/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">vdev-main</span>  </a> </li> </ul>  </details> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">typescript</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">cache</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/typescript/cache/001/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/cache/100/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.0</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">ds</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/typescript/ds/001/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/ds/100/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.0</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">marco</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/001/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/002/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.2</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/003/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.3</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/004/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.4</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/005/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.5</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/006/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.6</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/marco/007/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.7</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">perhaps-ts</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/typescript/perhaps-ts/001/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/perhaps-ts/002/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.2</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/perhaps-ts/003/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.3</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/perhaps-ts/004/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v0.0.4</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/perhaps-ts/100/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.0</span>  </a> </li> </ul>  </details> </li><li class="astro-vuz4rb4b"> <details class="astro-vuz4rb4b"> <summary class="astro-vuz4rb4b"> <div class="group-label astro-vuz4rb4b"> <span class="large astro-vuz4rb4b">router</span>  </div> <svg aria-hidden="true" class="caret astro-vuz4rb4b astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-vuz4rb4b"> <li class="astro-vuz4rb4b"> <a href="/archive/typescript/router/100/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.0</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/router/101/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.1</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/router/102/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.2</span>  </a> </li><li class="astro-vuz4rb4b"> <a href="/archive/typescript/router/103/" class="astro-vuz4rb4b"> <span class="astro-vuz4rb4b">v1.0.3</span>  </a> </li> </ul>  </details> </li> </ul>  </details> </li> </ul>  </details> </li> </ul>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-fzkmitet"> <div class="sl-flex social-icons astro-fzkmitet"> <a href="https://github.com/lnear-dev/" rel="me" class="sl-flex astro-duqvkmde"><span class="sr-only astro-duqvkmde">GitHub</span><svg aria-hidden="true" class="astro-duqvkmde astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a><a href="https://twitter.com/lnearwaju" rel="me" class="sl-flex astro-duqvkmde"><span class="sr-only astro-duqvkmde">Twitter</span><svg aria-hidden="true" class="astro-duqvkmde astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M24 4.4a10 10 0 0 1-2.83.78 5.05 5.05 0 0 0 2.17-2.79 9.7 9.7 0 0 1-3.13 1.23 4.89 4.89 0 0 0-5.94-1.03 5 5 0 0 0-2.17 2.38 5.15 5.15 0 0 0-.3 3.25c-1.95-.1-3.86-.63-5.61-1.53a14.04 14.04 0 0 1-4.52-3.74 5.2 5.2 0 0 0-.09 4.91c.39.74.94 1.35 1.61 1.82a4.77 4.77 0 0 1-2.23-.63v.06c0 1.16.4 2.29 1.12 3.18a4.9 4.9 0 0 0 2.84 1.74c-.73.22-1.5.26-2.24.12a4.89 4.89 0 0 0 4.59 3.49A9.78 9.78 0 0 1 0 19.73 13.65 13.65 0 0 0 7.55 22a13.63 13.63 0 0 0 9.96-4.16A14.26 14.26 0 0 0 21.6 7.65V7c.94-.72 1.75-1.6 2.4-2.6Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-67vd7ydq"> <span class="sr-only astro-67vd7ydq">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-67vd7ydq astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-67vd7ydq"> <option value="dark" class="astro-67vd7ydq">Dark</option><option value="light" class="astro-67vd7ydq">Light</option><option value="auto" selected="true" class="astro-67vd7ydq">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-67vd7ydq astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div> </div> </div> </nav> <div class="main-frame astro-fialk7t5">  <div class="lg:sl-flex astro-bhn7otzg"> <aside class="right-sidebar-container astro-bhn7otzg"> <div class="right-sidebar astro-bhn7otzg"> <div class="lg:sl-hidden astro-ahrmgsdt"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-j4zj2qru"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-j4zj2qru"><details id="starlight__mobile-toc" class="astro-j4zj2qru"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-j4zj2qru"><div class="toggle sl-flex astro-j4zj2qru">On this page<svg aria-hidden="true" class="caret astro-j4zj2qru astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-j4zj2qru"></span></summary><div class="dropdown astro-j4zj2qru"><ul class="isMobile astro-6y66ubzg" style="--depth: 0;"> <li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#_top" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#installation" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Installation</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#usage" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Usage</span> </a> <ul class="isMobile astro-6y66ubzg" style="--depth: 1;"> <li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#examples" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Examples</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#data--attributes" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">data-* Attributes</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#body-argument" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Body Argument</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#nested-elements" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Nested Elements</span> </a>  </li> </ul>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#encoding" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Encoding</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-ahrmgsdt"><div class="sl-container astro-ahrmgsdt"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-6y66ubzg" style="--depth: 0;"> <li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#_top" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#installation" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Installation</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#usage" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Usage</span> </a> <ul class="astro-6y66ubzg" style="--depth: 1;"> <li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#examples" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Examples</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#data--attributes" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">data-* Attributes</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#body-argument" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Body Argument</span> </a>  </li><li class="astro-6y66ubzg" style="--depth: 1;"> <a href="#nested-elements" class="astro-6y66ubzg" style="--depth: 1;"> <span class="astro-6y66ubzg" style="--depth: 1;">Nested Elements</span> </a>  </li> </ul>  </li><li class="astro-6y66ubzg" style="--depth: 0;"> <a href="#encoding" class="astro-6y66ubzg" style="--depth: 0;"> <span class="astro-6y66ubzg" style="--depth: 0;">Encoding</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-bhn7otzg">  <main data-pagefind-body lang="en" dir="ltr" class="astro-3n4akblj">    <div class="content-panel astro-qdncjuba"> <div class="sl-container astro-qdncjuba"> <h1 id="_top" class="astro-uo6nvhjq">lnear/html: A PHP Library for Generating HTML Elements</h1>  </div> </div>  <div class="content-panel astro-qdncjuba"> <div class="sl-container astro-qdncjuba"> <div class="sl-markdown-content"> <p>This library provides a collection of functions for generating HTML elements and their attributes based on the <a href="https://html.spec.whatwg.org/multipage/indices.html">HTML Living Standard</a>.</p>
+<h2 id="installation">Installation</h2>
+<p>To install the library, use the following command:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.d6kn2.css"><script type="module" src="/_astro/ec.3zb7u.js"></script><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3C63B3">composer</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3C63B3">require</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3C63B3">lnear/html</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="composer require lnear/html"><div></div></button></div></figure></div>
+<h2 id="usage">Usage</h2>
+<p>The library provides functions named after HTML elements, which accept attributes as named arguments. There are two namespaces available: <code dir="auto">html</code> and <code dir="auto">html\strict</code>.</p>
+<ul>
+<li><strong><code dir="auto">html\strict</code> Namespace:</strong> Only allows attributes that are valid for the element according to the HTML Living Standard.</li>
+<li><strong><code dir="auto">html</code> Namespace:</strong> More permissive, allowing any attribute to be passed to the function. Custom attribute names should be in camelCase.</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#809191;--1:#5E6578">// Using the strict namespace</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3C63B3">html</span><span style="--0:#D6DEEB;--1:#403F53">\</span><span style="--0:#82AAFF;--1:#3C63B3">strict</span><span style="--0:#D6DEEB;--1:#403F53">\</span><span style="--0:#82AAFF;--1:#3C63B3">a</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">href</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">https://example.com</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> dataFoo</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">bar</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// Throws an InvalidArgumentException</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#809191;--1:#5E6578">// Using the permissive namespace</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3C63B3">html</span><span style="--0:#D6DEEB;--1:#403F53">\</span><span style="--0:#82AAFF;--1:#3C63B3">a</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">href</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">https://example.com</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> dataFoo</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">bar</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;a href="https://example.com" data-foo="bar">&#x3C;/a></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="// Using the strict namespacehtml\strict\a(href: &#x27;https://example.com&#x27;, dataFoo: &#x27;bar&#x27;); // Throws an InvalidArgumentException// Using the permissive namespacehtml\a(href: &#x27;https://example.com&#x27;, dataFoo: &#x27;bar&#x27;); // <a href=&#x22;https://example.com&#x22; data-foo=&#x22;bar&#x22;></a>"><div></div></button></div></figure></div>
+<p>Other than the attribute restrictions, the two namespaces function identically. The following examples use the <code dir="auto">html</code> namespace, but you can use the <code dir="auto">html\strict</code> namespace to enforce the HTML standard.</p>
+<h3 id="data--attributes"><code dir="auto">data-*</code> Attributes</h3>
+<p>To pass <code dir="auto">data-*</code> attributes with the <code dir="auto">html\strict</code> namespace, use the <code dir="auto">dataset</code> attribute as an associative array with keys as the attribute names without the <code dir="auto">data-</code> prefix.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\strict\</span><span style="--0:#FFCB8B;--1:#111111">a</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">a</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">href</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">https://example.com</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> dataset</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">[</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">fooBar</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#7FDBCA;--1:#097174">=></span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">baz</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">]); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;a href="https://example.com" data-foo-bar="baz">&#x3C;/a></span></div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">a</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">href</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">https://example.com</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> dataset</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">[</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">fooBar</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#7FDBCA;--1:#097174">=></span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">baz</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">barFoo</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#7FDBCA;--1:#097174">=></span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">qux</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">]); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;a href="https://example.com" data-foo-bar="baz" data-bar-foo="qux">&#x3C;/a></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="use function html\strict\a;echo a(href: &#x27;https://example.com&#x27;, dataset: [&#x27;fooBar&#x27; => &#x27;baz&#x27;]); // <a href=&#x22;https://example.com&#x22; data-foo-bar=&#x22;baz&#x22;></a>echo a(href: &#x27;https://example.com&#x27;, dataset: [&#x27;fooBar&#x27; => &#x27;baz&#x27;, &#x27;barFoo&#x27; => &#x27;qux&#x27;]); // <a href=&#x22;https://example.com&#x22; data-foo-bar=&#x22;baz&#x22; data-bar-foo=&#x22;qux&#x22;></a>"><div></div></button></div></figure></div>
+<p>All functions return a <code dir="auto">Stringable</code> class (<code dir="auto">html\RenderResult</code>) of the HTML element they represent. The only exception is the <code dir="auto">var</code> function, which is named <code dir="auto">variable</code> to avoid conflicts with the reserved keyword <code dir="auto">var</code>.</p>
+<h3 id="body-argument">Body Argument</h3>
+<p>The <code dir="auto">body</code> argument is present in all non-self-closing elements, used to add text or other elements inside the element.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\</span><span style="--0:#FFCB8B;--1:#111111">div</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">Hello, World!</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;div>Hello, World!&#x3C;/div></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="use function html\div;echo div(body: &#x27;Hello, World!&#x27;); // <div>Hello, World!</div>"><div></div></button></div></figure></div>
+<p>The <code dir="auto">body</code> argument is also the first argument in these functions, so the argument name can be omitted.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\</span><span style="--0:#FFCB8B;--1:#111111">div</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">Hello, World!</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;div>Hello, World!&#x3C;/div></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="use function html\div;echo div(&#x27;Hello, World!&#x27;); // <div>Hello, World!</div>"><div></div></button></div></figure></div>
+<h3 id="nested-elements">Nested Elements</h3>
+<p>More complex elements can be created by nesting functions, with the <code dir="auto">body</code> argument as an array of elements.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\{</span><span style="--0:#FFCB8B;--1:#111111">div</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#FFCB8B;--1:#111111">a</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#FFCB8B;--1:#111111">p</span><span style="--0:#D6DEEB;--1:#403F53">};</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#82AAFF;--1:#3C63B3">    </span></span><span style="--0:#82AAFF;--1:#3C63B3">class</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">container</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#82AAFF;--1:#3C63B3">    </span></span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#82AAFF;--1:#3C63B3">        </span></span><span style="--0:#82AAFF;--1:#3C63B3">a</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">Click me!</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> href</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">https://example.com</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> target</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">_blank</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#82AAFF;--1:#3C63B3"> rel</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">noopener noreferrer</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">),</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#82AAFF;--1:#3C63B3">        </span></span><span style="--0:#82AAFF;--1:#3C63B3">p</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">This is a paragraph.</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">)</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#809191;--1:#5E6578">// &#x3C;div class="container">&#x3C;a href="https://example.com" target="_blank" rel="noopener noreferrer">Click me!&#x3C;/a>&#x3C;p>This is a paragraph.&#x3C;/p>&#x3C;/div></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="use function html\{div, a, p};echo div(    class: &#x27;container&#x27;,    body: [        a(&#x27;Click me!&#x27;, href: &#x27;https://example.com&#x27;, target: &#x27;_blank&#x27;, rel: &#x27;noopener noreferrer&#x27;),        p(&#x27;This is a paragraph.&#x27;)    ]);// <div class=&#x22;container&#x22;><a href=&#x22;https://example.com&#x22; target=&#x22;_blank&#x22; rel=&#x22;noopener noreferrer&#x22;>Click me!</a><p>This is a paragraph.</p></div>"><div></div></button></div></figure></div>
+<h2 id="encoding">Encoding</h2>
+<p>The <code dir="auto">html\RenderResult</code> class implements the <code dir="auto">Stringable</code> interface, allowing its use in any context where a string is expected. It can also be used to bypass HTML encoding of a string.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="php"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\{</span><span style="--0:#FFCB8B;--1:#111111">div</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#FFCB8B;--1:#111111">RenderResult</span><span style="--0:#D6DEEB;--1:#403F53">};</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BEC5D4;--1:#111111">$unsafe</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">=</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#9B504E">&#x3C;script>alert("XSS")&#x3C;/script></span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">$</span><span style="--0:#BEC5D4;--1:#111111">unsafe</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// Default encoding: &#x26;lt;script&#x26;gt;alert(&#x26;quot;XSS&#x26;quot;)&#x26;lt;/script&#x26;gt;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BEC5D4;--1:#111111">$safe</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">=</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#FFCB8B;--1:#111111">RenderResult</span><span style="--0:#7FDBCA;--1:#097174">::</span><span style="--0:#82AAFF;--1:#3C63B3">wrap</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#BEC5D4;--1:#111111">$unsafe</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// Explicit encoding</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">$</span><span style="--0:#BEC5D4;--1:#111111">safe</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// No double encoding: &#x3C;div>&#x26;lt;script&#x26;gt;alert(&#x26;quot;XSS&#x26;quot;)&#x26;lt;/script&#x26;gt;&#x3C;/div></span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BEC5D4;--1:#111111">$byPass</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">=</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#FFCB8B;--1:#111111">RenderResult</span><span style="--0:#7FDBCA;--1:#097174">::</span><span style="--0:#82AAFF;--1:#3C63B3">encoded</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#BEC5D4;--1:#111111">$unsafe</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// String already encoded</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> </span><span style="--0:#D6DEEB;--1:#403F53">$</span><span style="--0:#BEC5D4;--1:#111111">byPass</span><span style="--0:#D6DEEB;--1:#403F53">); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;div>&#x3C;script>alert("XSS")&#x3C;/script>&#x3C;/div></span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#809191;--1:#5E6578">// Or use the bypass helper function</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8D46B4">use</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8D46B4">function</span><span style="--0:#D6DEEB;--1:#403F53"> html\</span><span style="--0:#FFCB8B;--1:#111111">bypass</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3C63B3">echo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3C63B3">div</span><span style="--0:#D6DEEB;--1:#403F53">(</span><span style="--0:#82AAFF;--1:#3C63B3">body</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#82AAFF;--1:#3C63B3"> bypass</span><span style="--0:#D6DEEB;--1:#403F53">($</span><span style="--0:#BEC5D4;--1:#111111">unsafe</span><span style="--0:#D6DEEB;--1:#403F53">)); </span><span style="--0:#809191;--1:#5E6578">// &#x3C;div>&#x3C;script>alert("XSS")&#x3C;/script>&#x3C;/div></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="use function html\{div, RenderResult};$unsafe = &#x27;<script>alert(&#x22;XSS&#x22;)</script>&#x27;;echo div(body: $unsafe); // Default encoding: &#x26;lt;script&#x26;gt;alert(&#x26;quot;XSS&#x26;quot;)&#x26;lt;/script&#x26;gt;$safe = RenderResult::wrap($unsafe); // Explicit encodingecho div(body: $safe); // No double encoding: <div>&#x26;lt;script&#x26;gt;alert(&#x26;quot;XSS&#x26;quot;)&#x26;lt;/script&#x26;gt;</div>$byPass = RenderResult::encoded($unsafe); // String already encodedecho div(body: $byPass); // <div><script>alert(&#x22;XSS&#x22;)</script></div>// Or use the bypass helper functionuse function html\bypass;echo div(body: bypass($unsafe)); // <div><script>alert(&#x22;XSS&#x22;)</script></div>"><div></div></button></div></figure></div>
+<h1 id="elements">Elements</h1>
+<p>All elements share the following global attributes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Attribute</th></tr></thead><tbody><tr><td><code dir="auto">accesskey</code></td></tr><tr><td><code dir="auto">autocapitalize</code></td></tr><tr><td><code dir="auto">class</code></td></tr><tr><td><code dir="auto">contenteditable</code></td></tr><tr><td><code dir="auto">contextmenu</code></td></tr><tr><td><code dir="auto">dir</code></td></tr><tr><td><code dir="auto">draggable</code></td></tr><tr><td><code dir="auto">dropzone</code></td></tr><tr><td><code dir="auto">hidden</code></td></tr><tr><td><code dir="auto">id</code></td></tr><tr><td><code dir="auto">itemid</code></td></tr><tr><td><code dir="auto">itemprop</code></td></tr><tr><td><code dir="auto">itemref</code></td></tr><tr><td><code dir="auto">itemscope</code></td></tr><tr><td><code dir="auto">itemtype</code></td></tr><tr><td><code dir="auto">lang</code></td></tr><tr><td><code dir="auto">spellcheck</code></td></tr><tr><td><code dir="auto">style</code></td></tr><tr><td><code dir="auto">tabindex</code></td></tr><tr><td><code dir="auto">title</code></td></tr><tr><td><code dir="auto">translate</code></td></tr></tbody></table>
+<p>The following elements only have the global attributes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag</th></tr></thead><tbody><tr><td><code dir="auto">abbr</code></td></tr><tr><td><code dir="auto">address</code></td></tr><tr><td><code dir="auto">article</code></td></tr><tr><td><code dir="auto">aside</code></td></tr><tr><td><code dir="auto">b</code></td></tr><tr><td><code dir="auto">bdi</code></td></tr><tr><td><code dir="auto">bdo</code></td></tr><tr><td><code dir="auto">br</code></td></tr><tr><td><code dir="auto">caption</code></td></tr><tr><td><code dir="auto">cite</code></td></tr><tr><td><code dir="auto">code</code></td></tr><tr><td><code dir="auto">datalist</code></td></tr><tr><td><code dir="auto">dd</code></td></tr><tr><td><code dir="auto">dfn</code></td></tr><tr><td><code dir="auto">div</code></td></tr><tr><td><code dir="auto">dl</code></td></tr><tr><td><code dir="auto">dt</code></td></tr><tr><td><code dir="auto">em</code></td></tr><tr><td><code dir="auto">figcaption</code></td></tr><tr><td><code dir="auto">figure</code></td></tr><tr><td><code dir="auto">footer</code></td></tr><tr><td><code dir="auto">h1</code></td></tr><tr><td><code dir="auto">h2</code></td></tr><tr><td><code dir="auto">h3</code></td></tr><tr><td><code dir="auto">h4</code></td></tr><tr><td><code dir="auto">h5</code></td></tr><tr><td><code dir="auto">h6</code></td></tr><tr><td><code dir="auto">head</code></td></tr><tr><td><code dir="auto">header</code></td></tr><tr><td><code dir="auto">hgroup</code></td></tr><tr><td><code dir="auto">hr</code></td></tr><tr><td><code dir="auto">i</code></td></tr><tr><td><code dir="auto">kbd</code></td></tr><tr><td><code dir="auto">legend</code></td></tr><tr><td><code dir="auto">main</code></td></tr><tr><td><code dir="auto">mark</code></td></tr><tr><td><code dir="auto">math</code></td></tr><tr><td><code dir="auto">menu</code></td></tr><tr><td><code dir="auto">nav</code></td></tr><tr><td><code dir="auto">noscript</code></td></tr><tr><td><code dir="auto">p</code></td></tr><tr><td><code dir="auto">picture</code></td></tr><tr><td><code dir="auto">pre</code></td></tr><tr><td><code dir="auto">rp</code></td></tr><tr><td><code dir="auto">rt</code></td></tr><tr><td><code dir="auto">ruby</code></td></tr><tr><td><code dir="auto">s</code></td></tr><tr><td><code dir="auto">samp</code></td></tr><tr><td><code dir="auto">search</code></td></tr><tr><td><code dir="auto">section</code></td></tr><tr><td><code dir="auto">small</code></td></tr><tr><td><code dir="auto">span</code></td></tr><tr><td><code dir="auto">strong</code></td></tr><tr><td><code dir="auto">sub</code></td></tr><tr><td><code dir="auto">summary</code></td></tr><tr><td><code dir="auto">sup</code></td></tr><tr><td><code dir="auto">svg</code></td></tr><tr><td><code dir="auto">table</code></td></tr><tr><td><code dir="auto">tbody</code></td></tr><tr><td><code dir="auto">tfoot</code></td></tr><tr><td><code dir="auto">thead</code></td></tr><tr><td><code dir="auto">title</code></td></tr><tr><td><code dir="auto">tr</code></td></tr><tr><td><code dir="auto">u</code></td></tr><tr><td><code dir="auto">ul</code></td></tr><tr><td><code dir="auto">var</code></td></tr><tr><td><code dir="auto">wbr</code></td></tr></tbody></table>
+<p>The following elements have additional attributes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag</th><th>Attributes</th></tr></thead><tbody><tr><td><code dir="auto">a</code></td><td>href, target, download, ping, rel, hreflang, type, referrerpolicy</td></tr><tr><td><code dir="auto">area</code></td><td>alt, coords, shape, href, target, download, ping, rel, referrerpolicy</td></tr><tr><td><code dir="auto">audio</code></td><td>src, crossorigin, preload, autoplay, loop, muted, controls</td></tr><tr><td><code dir="auto">base</code></td><td>href, target</td></tr><tr><td><code dir="auto">blockquote</code></td><td>cite</td></tr><tr><td><code dir="auto">body</code></td><td>onafterprint, onbeforeprint, onbeforeunload, onhashchange, onlanguagechange, onmessage, onmessageerror, onoffline, ononline, onpageswap, onpagehide, onpagereveal, onpageshow, onpopstate, onrejectionhandled, onstorage, onunhandledrejection, onunload</td></tr><tr><td><code dir="auto">button</code></td><td>disabled, form, formaction, formenctype, formmethod, formnovalidate, formtarget, name, popovertarget, popovertargetaction, type, value</td></tr><tr><td><code dir="auto">canvas</code></td><td>width, height</td></tr><tr><td><code dir="auto">col</code></td><td>span</td></tr><tr><td><code dir="auto">colgroup</code></td><td>span</td></tr><tr><td><code dir="auto">data</code></td><td>value</td></tr><tr><td><code dir="auto">del</code></td><td>cite, datetime</td></tr><tr><td><code dir="auto">details</code></td><td>name, open</td></tr><tr><td><code dir="auto">dialog</code></td><td>open</td></tr><tr><td><code dir="auto">embed</code></td><td>src, type, width, height</td></tr><tr><td><code dir="auto">fieldset</code></td><td>disabled, form, name</td></tr><tr><td><code dir="auto">form</code></td><td>accept-charset, action, autocomplete, enctype, method, name, novalidate, rel, target</td></tr><tr><td><code dir="auto">html</code></td><td>manifest</td></tr><tr><td><code dir="auto">iframe</code></td><td>src, srcdoc, name, sandbox, allow, allowfullscreen, width, height, referrerpolicy, loading</td></tr><tr><td><code dir="auto">img</code></td><td>alt, src, srcset, sizes, crossorigin, usemap, ismap, width, height, referrerpolicy, decoding, loading, fetchpriority</td></tr><tr><td><code dir="auto">input</code></td><td>accept, alt, autocomplete, checked, dirname, disabled, form, formaction, formenctype, formmethod, formnovalidate, formtarget, height, list, max, maxlength, min, minlength, multiple, name, pattern, placeholder, popovertarget, popovertargetaction, readonly, required, size, src, step, type, value, width</td></tr><tr><td><code dir="auto">ins</code></td><td>cite, datetime</td></tr><tr><td><code dir="auto">label</code></td><td>for</td></tr><tr><td><code dir="auto">li</code></td><td>value</td></tr><tr><td><code dir="auto">link</code></td><td>href, crossorigin, rel, as, media, hreflang, type, sizes, imagesrcset, imagesizes, referrerpolicy, integrity, blocking, color, disabled, fetchpriority</td></tr><tr><td><code dir="auto">map</code></td><td>name</td></tr><tr><td><code dir="auto">meta</code></td><td>name, http-equiv, content, charset, media</td></tr><tr><td><code dir="auto">meter</code></td><td>value, min, max, low, high, optimum</td></tr><tr><td><code dir="auto">object</code></td><td>data, type, name, form, width, height</td></tr><tr><td><code dir="auto">ol</code></td><td>reversed, start, type</td></tr><tr><td><code dir="auto">optgroup</code></td><td>disabled, label</td></tr><tr><td><code dir="auto">option</code></td><td>disabled, label, selected, value</td></tr><tr><td><code dir="auto">output</code></td><td>for, form, name</td></tr><tr><td><code dir="auto">progress</code></td><td>value, max</td></tr><tr><td><code dir="auto">q</code></td><td>cite</td></tr><tr><td><code dir="auto">script</code></td><td>src, type, nomodule, async, defer, crossorigin, integrity, referrerpolicy, blocking, fetchpriority</td></tr><tr><td><code dir="auto">select</code></td><td>autocomplete, disabled, form, multiple, name, required, size</td></tr><tr><td><code dir="auto">slot</code></td><td>name</td></tr><tr><td><code dir="auto">source</code></td><td>type, media, src, srcset, sizes, width, height</td></tr><tr><td><code dir="auto">style</code></td><td>media, blocking</td></tr><tr><td><code dir="auto">td</code></td><td>colspan, rowspan, headers</td></tr><tr><td><code dir="auto">template</code></td><td>shadowrootmode, shadowrootdelegatesfocus, shadowrootclonable, shadowrootserializable</td></tr><tr><td><code dir="auto">textarea</code></td><td>autocomplete, cols, dirname, disabled, form, maxlength, minlength, name, placeholder, readonly, required, rows, wrap</td></tr><tr><td><code dir="auto">th</code></td><td>colspan, rowspan, headers, scope, abbr</td></tr><tr><td><code dir="auto">time</code></td><td>datetime</td></tr><tr><td><code dir="auto">track</code></td><td>default, kind, label, src, srclang</td></tr><tr><td><code dir="auto">video</code></td><td>src, crossorigin, poster, preload, autoplay, playsinline, loop, muted, controls, width, height</td></tr></tbody></table> </div> <footer class="sl-flex astro-sncwf75w"> <div class="meta sl-flex astro-sncwf75w">   </div> <div class="pagination-links astro-khet3hgq" dir="ltr">  <a href="/php/json/" rel="next" class="astro-khet3hgq"> <svg aria-hidden="true" class="astro-khet3hgq astro-pfoeqsyo" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-khet3hgq"> Next <br class="astro-khet3hgq"> <span class="link-title astro-khet3hgq">json</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
