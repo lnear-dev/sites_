@@ -1,95 +1,95 @@
-@import "@common/css/base.css";
+@import "../../_common/css/base.css";
 
 /* Hide undefined elements */
 :not(:defined) {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 body {
-    overflow-x: hidden;
-    font-family: "Victor Mono", sans-serif;
-    height: 100vh;
+  overflow-x: hidden;
+  font-family: "Victor Mono", sans-serif;
+  height: 100vh;
 }
 
 main {
-    /* height: calc(100vh - 4rem); */
-    max-height: 100%;
-    max-width: 60rem;
-    margin: 0 auto;
-    padding: 0 1rem;
-    overflow-x: hidden;
-    display: flex;
+  /* height: calc(100vh - 4rem); */
+  max-height: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > fieldset {
+    border: 2px solid var(--sec, black);
+    margin: 5% 0;
+    --size: 75px;
+    /* grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr)); */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
     justify-content: center;
     align-items: center;
 
-    > fieldset {
-        border: 2px solid var(--sec, black);
-        margin: 5% 0;
-        --size: 75px;
-        /* grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr)); */
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 10px;
-        justify-content: center;
-        align-items: center;
-
-        legend {
-            background-color: transparent;
-            border: none;
-            width: 35%;
-            text-align: center;
-            grid-column: 1 / -1;
-        }
-
-        h2 {
-            color: var(--blue);
-            margin: 0;
-        }
-
-        > svg {
-            width: var(--size);
-            height: var(--size);
-            box-sizing: border-box;
-        }
+    legend {
+      background-color: transparent;
+      border: none;
+      width: 35%;
+      text-align: center;
+      grid-column: 1 / -1;
     }
+
+    h2 {
+      color: var(--blue);
+      margin: 0;
+    }
+
+    > svg {
+      width: var(--size);
+      height: var(--size);
+      box-sizing: border-box;
+    }
+  }
 }
 @media (max-width: 768px) {
-    main {
-        flex-flow: column wrap;
-        justify-content: center;
-        align-items: center;
-    }
+  main {
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
 a {
-    font-family: "Victor Mono", sans-serif;
-    text-align: center;
-    text-decoration: none;
+  font-family: "Victor Mono", sans-serif;
+  text-align: center;
+  text-decoration: none;
 
-    cursor: pointer;
-    color: var(--blue);
-    font-weight: 500;
-    transition: 0.2s ease-in-out;
+  cursor: pointer;
+  color: var(--blue);
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
 }
 
 legend,
 fieldset {
-    border: 2px solid var(--blue);
+  border: 2px solid var(--blue);
 }
 legend {
-    background-color: var(--blue);
-    border: 2px solid var(--blue);
+  background-color: var(--blue);
+  border: 2px solid var(--blue);
 }
 
 /* titles */
 h1 {
-    color: var(--blue);
-    font-size: clamp(24px, 5vw, 36px);
-    font-weight: 600;
-    padding: 1% 0;
+  color: var(--blue);
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 600;
+  padding: 1% 0;
 }
 /* sub-titles */
 h2,
 h3 {
-    font-size: clamp(16px, 2vh, 24px);
-    font-weight: 400;
+  font-size: clamp(16px, 2vh, 24px);
+  font-weight: 400;
 }

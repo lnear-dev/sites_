@@ -28,7 +28,7 @@ export default defineConfig({
         github: "https://github.com/lnear-dev/",
         twitter: "https://twitter.com/lnearwaju",
       },
-      customCss: ["./src/styles/global.css"],
+      customCss: ["./src/style.css"],
       sidebar: [
 
         {

@@ -1,56 +1,56 @@
 @import "./fonts/.css";
 :root {
-    --blue: #00b8ff;
-    --red: #ff499e;
-    --green: #79e118;
-    --text: #353535;
-    --sec: #d6d6d6;
-    --fill: #f9f9f9;
-    --gray: 96, 115, 159;
-    --gray-light: 229, 233, 240;
-    --gray-dark: 34, 41, 57;
-    --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-    --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
-        0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+  --blue: #00b8ff;
+  --red: #ff499e;
+  --green: #79e118;
+  --text: #353535;
+  --sec: #d6d6d6;
+  --fill: #f9f9f9;
+  --gray: 96, 115, 159;
+  --gray-light: 229, 233, 240;
+  --gray-dark: 34, 41, 57;
+  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
+  --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
+    0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --green: #c5e6a6;
-        --sec: #d6d6d6db;
-        --fill: #1a1a1a;
-        --text: #f9f9f9;
-    }
+  :root {
+    --green: #c5e6a6;
+    --sec: #d6d6d6db;
+    --fill: #1a1a1a;
+    --text: #f9f9f9;
+  }
 }
 
 :not(:defined) {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 * {
-    font-family: "Victor Mono", sans-serif;
-    font-synthesis: position;
-    text-size-adjust: none;
-    text-rendering: auto;
-    line-height: 1.5;
-    font-weight: 400;
+  font-family: "Victor Mono", sans-serif;
+  font-synthesis: position;
+  text-size-adjust: none;
+  text-rendering: auto;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    /* background-color: var(--fill); */
+  margin: 0;
+  min-height: 100vh;
+  /* background-color: var(--fill); */
 
-    &::-webkit-scrollbar {
-        width: 1em;
-    }
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
 
-    &::-webkit-scrollbar-track {
-        background-color: hsl(var(--fill), 10%);
-    }
+  &::-webkit-scrollbar-track {
+    background-color: hsl(var(--fill), 10%);
+  }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--blue);
-        outline: 1px solid var(--blue);
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--blue);
+    outline: 1px solid var(--blue);
+  }
 }

@@ -1,5 +1,6 @@
 ---
-import { StarlightHeader } from "starlight-common";
+import type { Props } from "@astrojs/starlight/props";
+import { StarlightHeader as B } from "starlight-common";
 ---
 
-<StarlightHeader current="blog" {...Astro.props} />
+<B current="blog" {...Astro.props}><slot /></B>

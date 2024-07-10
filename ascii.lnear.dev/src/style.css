@@ -1,4 +1,4 @@
-@import "@common/css/base.css";
+@import "../../_common/css/base.css";
 
 /* Hide undefined elements */
 :not(:defined) {
