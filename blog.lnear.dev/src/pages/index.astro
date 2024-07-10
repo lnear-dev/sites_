@@ -1,0 +1,30 @@
+---
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { getCollection } from "astro:content";
+const posts = await getCollection("docs");
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Welcome to My Blog",
+    description:
+      "This is a blog where I write about things I find interesting.",
+    template: "splash",
+  }}
+  hasSidebar={true}
+>
+  {
+    posts.map(
+      (post) =>
+        post && (
+          <LinkCard
+            title={post.data.title}
+            description={post.data.description}
+            href={post.slug}
+          />
+        )
+    )
+  }
+  <CardGrid />
+</StarlightPage>

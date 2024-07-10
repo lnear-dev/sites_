@@ -1,0 +1,34 @@
+---
+import { header } from "./data";
+interface Props {
+    current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<>
+    {
+        header.map((domain) => (
+            <a
+                href={`//${domain}.lnear.dev`}
+                class={domain === current ? "active" : ""}
+            >
+                {domain}.
+            </a>
+        ))
+    }
+</>
+<style>
+    a {
+        color: var(--blue);
+        padding: 0.5em;
+        margin: -0.5em;
+    }
+    a:hover {
+        opacity: 0.66;
+    }
+    a.active {
+        color: var(--red);
+    }
+</style>

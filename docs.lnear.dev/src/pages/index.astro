@@ -1,0 +1,36 @@
+---
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { getCollection } from "astro:content";
+const posts = await getCollection(
+  "docs",
+  ({ id }) => !id.startsWith("archive/")
+);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Welcome to My Docs Site",
+    description: "Learn how to use my project with these guides and tutorials.",
+    template: "splash",
+
+    hero: {
+      tagline: "Learn how to use my project with these guides and tutorials.",
+    },
+  }}
+  hasSidebar={true}
+>
+  {
+    posts.map(
+      (post) =>
+        post && (
+          <LinkCard
+            title={post.data.title}
+            description={post.data.description}
+            href={post.slug}
+          />
+        )
+    )
+  }
+  <CardGrid />
+</StarlightPage>

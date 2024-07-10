@@ -1,0 +1,123 @@
+---
+import HeaderLinks from "./HeaderLinks.astro";
+
+import { header } from "./data";
+interface Props {
+    current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<header>
+    <nav>
+        <a href="https://lnear.dev"
+            ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
+                <path
+                    style="fill: #00b8ff;"
+                    d="M460 1110.49c0-48.38 32.68-82.38 78.44-82.38s77.15 34 77.15 82.38-30.07 82.37-78.45 82.37c-45.77 0-77.14-35.31-77.14-82.37M1277.16 807.14v78.45h-575.3v-78.45zM1384.41 1110.49c0-48.38 32.68-82.38 78.44-82.38s77.15 34 77.15 82.38-30.07 82.37-78.45 82.37c-45.77 0-77.14-35.31-77.14-82.37"
+                ></path></svg
+            ></a
+        >
+        <span>
+            <HeaderLinks current={current} />
+        </span>
+    </nav>
+</header>
+
+<style>
+    header {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+
+        box-shadow: 0 2px 8px rgba(var(--black), 5%);
+        margin: 0;
+        padding: 0 1em;
+        top: 0;
+        width: 100%;
+
+        h2 {
+            margin: 0;
+            font-size: 1em;
+
+            a,
+            a.active {
+                text-decoration: none;
+            }
+        }
+
+        nav {
+            width: 80rem;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+
+            a {
+                text-align: start;
+                width: 25%;
+                font-size: clamp(16px, 2.5vw, 18px);
+                padding: 1em 0.5em;
+                border-bottom: 4px solid transparent;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &.active {
+                    color: var(--red);
+                    text-decoration: none;
+                    border-bottom-color: var(--accent);
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            img,
+            svg {
+                width: 70%;
+            }
+        }
+
+        #social-links {
+            display: flex;
+
+            a {
+                display: flex;
+            }
+
+            @media (max-width: 720px) {
+                & {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        header {
+            max-width: 90%;
+            h2 {
+                font-size: 1.5em;
+            }
+
+            nav {
+                a {
+                    font-size: 1em;
+                }
+
+                ul {
+                    a {
+                        font-size: 1em;
+                    }
+                }
+            }
+        }
+    }
+</style>
